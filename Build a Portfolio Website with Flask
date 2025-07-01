@@ -1,0 +1,127 @@
+# Portfolio-Website-with-Flask
+# Objective:
+i. Create a portfolio website to showcase your profile, projects, and a contact form.
+
+# Tools Needed:
+1. Python 3+
+2. Flask (pip install flask)
+3. Basic knowledge of HTML, CSS
+
+# Project Structure:
+
+portfolio/
+│
+├── app.py
+├── static/
+│   └── style.css
+├── templates/
+│   ├── index.html
+│   └── contact.html
+
+
+# CODE :
+
+from flask import Flask, render_template, request
+
+app = Flask(name)
+
+@app.route('/')
+
+def index():
+
+    return render_template('index.html')
+
+@app.route('/contact', methods=['GET', 'POST'])
+
+def contact():
+
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        message = request.form['message']
+        print(f"Message from {name} ({email}): {message}")
+        return "Thank you for contacting m.e!"
+    return render_template('contact.html')
+
+if name == 'main':
+    app.run(debug=True)
+
+
+# templates/index.html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Portfolio</title>
+</head>
+<body>
+    <h1>Welcome to My Portfolio</h1>
+    <p>Hello! I'm [SURBHI KANT], a web developer who loves building with Python and Flask.</p>
+    <a href="/contact">Contact Me</a>
+</body>
+</html>
+
+
+
+# templates/contact.html
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Me</title>
+</head>
+<body>
+    <h1>Contact Form</h1>
+    <form method="POST">
+        <label>Your Name:</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label>Your Email:</label><br>
+        <input type="email" name="email" required><br><br>
+
+        <label>Your Message:</label><br>
+        <textarea name="message" required></textarea><br><br>
+
+        <input type="submit" value="Send">
+    </form>
+</body>
+</html>
+
+
+# static/style.css
+
+body {
+    font-family: sans-serif;
+    margin: 40px;
+    background: #f0f0f0;
+    color: #333;
+}
+
+h1, h2 {
+    color: #0055aa;
+}
+
+form {
+    max-width: 400px;
+}
+
+input, textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+
+
+# You will see your portfolio homepage!
+
+# Final Output
+
+i.   / – Shows your portfolio homepage
+
+ii.  /contact – Contact form page
+
+iii. Styles applied using CSS
+
+iv.  Flask handles routing and form data
